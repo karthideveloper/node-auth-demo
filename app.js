@@ -1,10 +1,11 @@
-const mongoose=require('mongoose')
-const express=require('express')
-mongoose.connect('mongodb://localhost/authTest').then((res)=>{
-console.log("db connected successfully")
-}).catch((er)=>{
-    console.log(er)
-})
+const express = require("express");
+const UserRegister = require("./router/userAuth");
 
-const app=express();
-app.use(express.json())
+const app = express();
+app.use(express.json());
+app.use("/register", UserRegister);
+
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`app listening on ${port}`);
+});
